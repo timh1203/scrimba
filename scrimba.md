@@ -283,6 +283,80 @@ class Cat extends Animal {
 ```
 
 ## 19. Trailing Commas
+- helps prevent errors with trailing commas
+- it's there now
+```js
+function add(param1,){
+    const example = {
+        name: 'Dylan',
+    };
+    
+    console.log(example)
+};
+
+add(2);
+```
+
 ## 20. Async & Await
+- async await cleans up the code versus the .then() chainings
+```js
+const apiUrl = 'https://fcctop100.herokuapp.com/api/fccusers/top/alltime';
+
+async function getTop100Campers() {
+    const response = await fetch(apiUrl);
+    const json = await response.json();
+    
+    console.log(json[0]);
+}
+
+// function getTop100Campers() {
+//     fetch(apiUrl)
+//     .then((r) => r.json())
+//     .then((json) => {
+//         console.log(json[0])
+//     }).catch((error) =>{
+//         console.log('failed');
+//     });
+// }
+
+getTop100Campers();
+```
+
 ## 21. Async & Await (Challenge)
+- we write an async function here simulated with a setTimeout()
+```js
+function resolveAfter3Seconds() {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve('resolved');
+    }, 3000);
+  });
+}
+
+// resolveAfter3Seconds().then((data) => {
+//     console.log(data);
+// });
+
+async function getAsyncData() {
+    const result = await resolveAfter3Seconds();
+    console.log(result);
+}
+
+getAsyncData();
+```
+
 ## 22. Sets
+- sets are iterable
+- can use forEach or for Of
+```js
+const exampleSet = new Set([1,1,1,1,2,2,2,2]);
+
+exampleSet.add(5);
+exampleSet.add(5); // this gets ignored
+
+console.log(exampleSet);
+console.log(exampleSet.size);
+console.log(exampleSet.delete(5)); // if item is in the set, returns boolean
+console.log(exampleSet.has(5)); // checks if set has an item, returns boolean
+exampleSet.clear(); // clears out the set
+```
