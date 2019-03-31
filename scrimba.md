@@ -360,3 +360,253 @@ console.log(exampleSet.delete(5)); // if item is in the set, returns boolean
 console.log(exampleSet.has(5)); // checks if set has an item, returns boolean
 exampleSet.clear(); // clears out the set
 ```
+
+# Learn Regular Expressions by Free Code Camp
+
+## 1. Regular Expressions Intro
+- helps define a search pattern for a string
+- we are doing RegEx in Javascript
+- part of FCC curriculum but this is a standalone on Scrimba
+
+## 2. Using the Test Method
+- test lets you run the results and returns a boolean
+- test for `Hello` will NOT work for `hello`
+- tests are case-sensitive
+```js
+let sentence = "The dog chased the cat."
+let regex = /the/
+
+let myString = "Hello, World!";
+let myRegex = /Hello/;
+let result = myRegex.test(myString);
+console.log(result); // returns true
+```
+
+## 3. Match Literal Strings
+- again, it is case sensitive
+```js
+let waldoIsHiding = "Somewhere Waldo is hiding in this text.";
+let waldoRegex = /Waldo/;
+let result = waldoRegex.test(waldoIsHiding);
+console.log(result); // returns true
+```
+
+## 4. Match a Literal String with Different Possibilities
+- will match more multiple words if you use the `|` operator
+```js
+let petString = "James has a pet cat.";
+let petRegex = /dog|cat|bird|fish/;
+let result = petRegex.test(petString);
+console.log(result); // returns true because cat is one of the possibilities
+```
+
+## 5. Ignore Cases While Matching
+- we use the `i` flag to ignore cases when searching
+```js
+let myString = "freeCodeCamp";
+let fccRegex = /freecodecamp/i;
+let result = fccRegex.test(myString);
+console.log(result); // returns true because the C's case are ignored
+```
+
+## 6. Extract Matches
+- we can extract the matches with `.match()` method
+- returns and array with the matches
+```js
+let extractStr = "Extract the word 'coding' from this string.";
+let codingRegex = /coding/; 
+let result = extractStr.match(codingRegex); 
+
+console.log(result);
+```
+
+## 7. Find more than the first match
+- 1st example: meets exactly the regex without ignoring cases and returns an arr
+- 2nd example: ignores case and looks globally to return an array with matches
+```js
+let testStr = "Repeat, Stop, Repeat, Stop, Repeat";
+let ourRegex = /Repeat/g;
+const result = testStr.match(ourRegex);
+console.log(result);
+
+let twinkleStar = "Twinkle, twinkle, little star";
+let starRegex = /twinkle/ig;
+let result2 = twinkleStar.match(starRegex); 
+console.log(result2);
+```
+
+## 8. Match Anythign with Wildcard Period
+- `.` is a wildcard character in regex
+- 1st example: match does not look for characters before or after the match
+- 2nd example: will look for fun, sun, run, nun, etc.
+```js
+let humStr = "I'll hum a song";
+let hugStr = "Bear hugging";
+let huRegex = /hu./;
+const result = humStr.match(huRegex); 
+const result2 = hugStr.match(huRegex); 
+console.log(result); // Returns ["hum"]
+console.log(result2); // Returns ["hug"] only, not "hugging"
+
+let exampleStr = "Let's have fun with regular expressions! imrunning";
+let unRegex = /.un/g;
+let result3 = unRegex.test(exampleStr);
+const result4 = exampleStr.match(unRegex);
+console.log(result3); // returns true
+console.log(result4); // returns ['fun', 'run']
+```
+
+## 9. Match Single Character with Multiple Possibilities
+- will match only certain characters also if put in `[]`
+```js
+let bgRegex = /b[aiu]g/;
+let quoteSample = "Beware of bugs in the above code; I have only proved it correct, not tried it.";
+let vowelRegex = /b[aeiou]/ig;
+let result = quoteSample.match(vowelRegex);
+console.log(result); // returns ['Be', 'bu', 'bo']
+```
+
+## 10. Match Letters of the Alphabet
+- matches every letter in the string
+- returns an array with each single letter as an item
+```js
+let quoteSample = "The quick brown fox jumps over the lazy dog.";
+let alphabetRegex = /[a-z]/ig; 
+let result = quoteSample.match(alphabetRegex); 
+
+console.log(result);
+```
+
+## 11. Match Numbers and Letters of the Alphabet
+- returns an array of matching numbers and letters in the regex
+```js
+let quoteSample = "Blueberry 3.141592653s are delicious.";
+let myRegex = /[2-6h-s]/ig;
+let result = quoteSample.match(myRegex); 
+
+console.log(result); // returns each matching letter and number
+```
+
+## 12. Match characters that occur one or more times with `^` operator
+- `negated character sets` use `^`
+- will match everything except after the `^`
+```js
+let quoteSample = "3 blind mice.";
+let myRegex = /[^0-9aeiou]/ig; 
+let result = quoteSample.match(myRegex); 
+
+console.log(result);
+```
+
+## 13. Match characters that occur one or more times with `+` operator
+- will match the same character that follows after the first
+- if there's only 1 character, it will also return that also
+```js
+let difficultSpelling = "Mississipspi";
+let myRegex = /s+/g; 
+let result = difficultSpelling.match(myRegex);
+console.log(result); // returns ['ss', 'ss', 's'];
+
+let randomSpelling = "abbcdfghiijj";
+let randomRegex = /b+|i+/g;
+let result2 = randomSpelling.match(randomRegex);
+console.log(result2);
+```
+
+## 14. Match characters that occur one or more times with `+` operator
+- will return only if the subsequent characters following the last match charater match like in go
+- we can do this with the `*`, meaning the number of occurence tags
+```js
+let soccerWord = "gooooooooal!";
+let gPhrase = "gut feeling";
+let oPhrase = "over the moon";
+let goRegex = /go*/;
+console.log(soccerWord.match(goRegex)); // Returns ["goooooooo"]
+console.log(gPhrase.match(goRegex)); // Returns ["g"]
+console.log(oPhrase.match(goRegex)); // Returns null
+
+let chewieQuote = "Aaaaaaaaaaaaaaaarrrgh!";
+let chewieRegex = /Aa*/; // Change this line
+let result4 = chewieQuote.match(chewieRegex);
+console.log(result4); // returns ["Aaaaaaaaaaaaaaaa"]
+```
+
+## 15. Find Characters with lazy matching and `?` operator
+- regex patterns defaults to "greedy" matching
+- but what if we want to do a "lazy" match
+- we can do this with the `?`, it will cut off at the first ending
+- 1st example: would return "titani" without the `?`, but we want it to terminate at the "ti"
+- 2nd example: we want to return "<h1>" only
+```js
+let string = "titanic";
+let regex = /t[a-z]*?i/; 
+console.log(string.match(regex)); // returns ['ti']
+
+let text = "<h1>Winter is coming</h1>";
+let myRegex = /<.*?>/; 
+let result = text.match(myRegex); // returns ['<h1>']
+
+console.log(result);
+```
+
+## 16. Find Characters with lazy matching (challenge)
+- this is a challenge to find the criminals at once represented by "C"
+```js
+let reCriminals = /C+/; // Change this line
+let crowd = 'P1P2P3P4P5P6CCCP7P8P9';
+let matchedCriminals = crowd.match(reCriminals);
+console.log(matchedCriminals); // returns ["CCC"]
+```
+
+## 17. Match Beginning String Patterns
+- matches only when `Cal` is at the beginning of the string using `^`
+- spaces and other characters do matter
+```js
+let calRegex = /^Cal/; // Change this line
+let rickyAndCal = "Cal and Rickyboth like racing.";
+let rickyAndCal2 = "and Ricky Cal both like racing.";
+let rickyAndCal3 = " Cal Ricky Cal both like racing.";
+let result = calRegex.test(rickyAndCal);
+let result2 = calRegex.test(rickyAndCal2);
+let result3 = calRegex.test(rickyAndCal3);
+console.log(result); // returns true
+console.log(result2); // returns false
+console.log(result3); // returns false, spaces also matter
+```
+
+## 18. Match Ending String Patterns
+- matches only when `caboose` is at the end of the string using `$`
+- spaces and other characters do matter
+```js
+let lastRegex = /caboose$/; // Change this line
+let caboose = "The last car on a train is the caboose";
+let caboose2 = "The last car on a train is the caboose?";
+console.log(lastRegex.test(caboose)); // true
+console.log(lastRegex.test(caboose2)); // false, last character does matter
+```
+
+## 19. Match all letters and numbers with `\w`
+- short hand character class called `\w` to match the alphabet, 0-9, and underscore instead of using `[a-z]`
+- excludes spaces and period
+```js
+let quoteSample = "The five boxing wizards jump quickly._";
+let quoteSample2 = "The five boxing! wizards? jump; quickly._";
+let alphabetRegexV2 = /\w/g; // Change this line
+console.log(quoteSample.match(alphabetRegexV2).length); // 32, includes the underscore also
+console.log(quoteSample2.match(alphabetRegexV2).length); // still 32, excludes spaces, exclamation point, and period
+```
+
+## 20. Match everything but letters and numbers with `\W`
+- `\W` is everything except a-z, 0-9, underscore
+- `\W` is the reverse of `\w\`
+```js
+let quoteSample = "The five boxing wizards jump quickly.";
+let nonAlphabetRegex = /\W/g; // Change this line
+let result = quoteSample.match(nonAlphabetRegex).length;
+console.log(result); // 6, matches 5 spaces and period
+```
+
+## 
+-
+```js
+```
