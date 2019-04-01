@@ -369,7 +369,7 @@ exampleSet.clear(); // clears out the set
 - part of FCC curriculum but this is a standalone on Scrimba
 
 ## 2. Using the Test Method
-- test lets you run the results and returns a boolean
+- `.test()` lets you run the results and returns a boolean
 - test for `Hello` will NOT work for `hello`
 - tests are case-sensitive
 ```js
@@ -392,7 +392,7 @@ console.log(result); // returns true
 ```
 
 ## 4. Match a Literal String with Different Possibilities
-- will match more multiple words if you use the `|` operator
+- `|` will match more multiple words if you use the `|` operator
 ```js
 let petString = "James has a pet cat.";
 let petRegex = /dog|cat|bird|fish/;
@@ -401,7 +401,7 @@ console.log(result); // returns true because cat is one of the possibilities
 ```
 
 ## 5. Ignore Cases While Matching
-- we use the `i` flag to ignore cases when searching
+- `i` flag to ignore cases when searching
 ```js
 let myString = "freeCodeCamp";
 let fccRegex = /freecodecamp/i;
@@ -410,7 +410,7 @@ console.log(result); // returns true because the C's case are ignored
 ```
 
 ## 6. Extract Matches
-- we can extract the matches with `.match()` method
+- `.match()` method extract the matches
 - returns and array with the matches
 ```js
 let extractStr = "Extract the word 'coding' from this string.";
@@ -421,21 +421,22 @@ console.log(result);
 ```
 
 ## 7. Find more than the first match
+- `g` flag lets you search the whole string
 - 1st example: meets exactly the regex without ignoring cases and returns an arr
 - 2nd example: ignores case and looks globally to return an array with matches
 ```js
 let testStr = "Repeat, Stop, Repeat, Stop, Repeat";
 let ourRegex = /Repeat/g;
 const result = testStr.match(ourRegex);
-console.log(result);
+console.log(result); // ['Repeat', 'Repeat', 'Repeat']
 
 let twinkleStar = "Twinkle, twinkle, little star";
 let starRegex = /twinkle/ig;
 let result2 = twinkleStar.match(starRegex); 
-console.log(result2);
+console.log(result2); // ['Twinkle', 'twinkle']
 ```
 
-## 8. Match Anythign with Wildcard Period
+## 8. Match Anything with Wildcard Period
 - `.` is a wildcard character in regex
 - 1st example: match does not look for characters before or after the match
 - 2nd example: will look for fun, sun, run, nun, etc.
@@ -457,7 +458,7 @@ console.log(result4); // returns ['fun', 'run']
 ```
 
 ## 9. Match Single Character with Multiple Possibilities
-- will match only certain characters also if put in `[]`
+- `[]` will match only certain characters
 ```js
 let bgRegex = /b[aiu]g/;
 let quoteSample = "Beware of bugs in the above code; I have only proved it correct, not tried it.";
@@ -488,18 +489,17 @@ console.log(result); // returns each matching letter and number
 ```
 
 ## 12. Match characters that occur one or more times with `^` operator
-- `negated character sets` use `^`
-- will match everything except after the `^`
+- `negated character sets` use `^` inside `[]`
+- after the `^`, will match everything except those specified
 ```js
 let quoteSample = "3 blind mice.";
 let myRegex = /[^0-9aeiou]/ig; 
 let result = quoteSample.match(myRegex); 
-
-console.log(result);
+console.log(result); // [' ', 'b', 'l', 'n', 'd', ' ', 'm', 'c', '.']
 ```
 
-## 13. Match characters that occur one or more times with `+` operator
-- will match the same character that follows after the first
+## 13. Match characters that occur one or more times
+- `+`will match the same character that follows after the first
 - if there's only 1 character, it will also return that also
 ```js
 let difficultSpelling = "Mississipspi";
@@ -510,11 +510,11 @@ console.log(result); // returns ['ss', 'ss', 's'];
 let randomSpelling = "abbcdfghiijj";
 let randomRegex = /b+|i+/g;
 let result2 = randomSpelling.match(randomRegex);
-console.log(result2);
+console.log(result2); // ['bb', 'ii']
 ```
 
-## 14. Match characters that occur one or more times with `+` operator
-- will return only if the subsequent characters following the last match charater match like in go
+## 14. Match characters that occur one or more times
+- `*` will return only if the subsequent characters following the last match charater match, o, like in go
 - we can do this with the `*`, meaning the number of occurence tags
 ```js
 let soccerWord = "gooooooooal!";
