@@ -526,7 +526,7 @@ console.log(gPhrase.match(goRegex)); // Returns ["g"]
 console.log(oPhrase.match(goRegex)); // Returns null
 
 let chewieQuote = "Aaaaaaaaaaaaaaaarrrgh!";
-let chewieRegex = /Aa*/; // Change this line
+let chewieRegex = /Aa*/;
 let result4 = chewieQuote.match(chewieRegex);
 console.log(result4); // returns ["Aaaaaaaaaaaaaaaa"]
 ```
@@ -552,7 +552,7 @@ console.log(result);
 ## 16. Find Characters with lazy matching (challenge)
 - this is a challenge to find the criminals at once represented by "C"
 ```js
-let reCriminals = /C+/; // Change this line
+let reCriminals = /C+/;
 let crowd = 'P1P2P3P4P5P6CCCP7P8P9';
 let matchedCriminals = crowd.match(reCriminals);
 console.log(matchedCriminals); // returns ["CCC"]
@@ -562,7 +562,7 @@ console.log(matchedCriminals); // returns ["CCC"]
 - matches only when `Cal` is at the beginning of the string using `^`
 - spaces and other characters do matter
 ```js
-let calRegex = /^Cal/; // Change this line
+let calRegex = /^Cal/;
 let rickyAndCal = "Cal and Rickyboth like racing.";
 let rickyAndCal2 = "and Ricky Cal both like racing.";
 let rickyAndCal3 = " Cal Ricky Cal both like racing.";
@@ -578,7 +578,7 @@ console.log(result3); // returns false, spaces also matter
 - matches only when `caboose` is at the end of the string using `$`
 - spaces and other characters do matter
 ```js
-let lastRegex = /caboose$/; // Change this line
+let lastRegex = /caboose$/;
 let caboose = "The last car on a train is the caboose";
 let caboose2 = "The last car on a train is the caboose?";
 console.log(lastRegex.test(caboose)); // true
@@ -591,7 +591,7 @@ console.log(lastRegex.test(caboose2)); // false, last character does matter
 ```js
 let quoteSample = "The five boxing wizards jump quickly._";
 let quoteSample2 = "The five boxing! wizards? jump; quickly._";
-let alphabetRegexV2 = /\w/g; // Change this line
+let alphabetRegexV2 = /\w/g;
 console.log(quoteSample.match(alphabetRegexV2).length); // 32, includes the underscore also
 console.log(quoteSample2.match(alphabetRegexV2).length); // still 32, excludes spaces, exclamation point, and period
 ```
@@ -601,12 +601,185 @@ console.log(quoteSample2.match(alphabetRegexV2).length); // still 32, excludes s
 - `\W` is the reverse of `\w\`
 ```js
 let quoteSample = "The five boxing wizards jump quickly.";
-let nonAlphabetRegex = /\W/g; // Change this line
+let nonAlphabetRegex = /\W/g;
 let result = quoteSample.match(nonAlphabetRegex).length;
 console.log(result); // 6, matches 5 spaces and period
 ```
 
-## 
--
+## 21. Match All Numbers
+- `\d` matches all numbers
 ```js
+let numString = "Your sandwich will be $5.00";
+let numRegex = /\d/g;
+let result = numString.match(numRegex);
+let resultLength = numString.match(numRegex);
+console.log(result); // ['5', '0', '0']
+console.log(resultLength); // 3
+```
+
+## 22. Match all none numbers
+- `\D` matches all non-numbers
+```js
+let numString = "Your sandwich will be $5.00";
+let numRegex = /\D/g;
+let result = numString.match(numRegex);
+let resultLength = numString.match(numRegex);
+console.log(result); // returns long array
+console.log(resultLength); // 24
+```
+
+## 23. Restrict Possible Usernames
+- `^[A-Za-z]` matches all letters that start the strings
+- `{2,}` requires 2 matches minimum and infinity maximum
+- `\d*$` matches any number of digits, `*` means 0 or more numbers, and `$` means at the end
+```js
+/*
+1) If there are numbers, they must be at the end.
+2) Letters can be lowercase and uppercase.
+3) At least two characters long. Two-letter names can't have numbers.
+*/ 
+
+let username = "JackOfAllTrades22";
+let userCheck = /^[A-Za-z]{2,}\d*$/;
+let result = userCheck.test(username);
+console.log(result);
+```
+
+## 24. Match whitespace
+- `\s` matches for spaces, tabs
+```js
+let sample = "Whitespace is important in separating words";
+let countWhiteSpace = /\s/g;
+let result = sample.match(countWhiteSpace);
+console.log(result); [' ', ' ', ' ', ' ', ' ',]
+```
+
+## 25. Match non-whitespace characters
+- `\S\` matches all non-whitespace characters
+```js
+let sample = "Whitespace is important in separating words";
+let countWhiteSpace = /\S/g;
+let result = sample.match(countWhiteSpace);
+console.log(result);
+```
+
+## 26. Specify upper and lower number of matches
+- `{}` specifies ranges of lower and uppper bound of matches
+- had the number of h's been outside of 3-6 range, `result2` would have returned null
+```js
+let ohStr = "Ohhh no";
+let ohRegex = /Oh{3,6} no/;
+let result = ohRegex.test(ohStr);
+let result2 = ohStr.match(ohRegex);
+console.log(result); // true
+console.log(result2); // ['Ohhh no']
+```
+
+## 27. Specifying only the lower number of matches
+- `{2,}` means 2 to infinity match
+```js
+let haStr = "Hazzzzah";
+let haRegex = /z{4,}/;
+let result = haRegex.test(haStr);
+const result2 = haStr.match(haRegex);
+console.log(result); // true
+console.log(result2); // ['zzzz']
+```
+
+## 28. Specify exact nubmer of matches
+- `{4}` specifies exactly the amount of matches
+```js
+let timStr = "Timmmmber";
+let timRegex = /Tim{4}ber/;
+let result = timRegex.test(timStr);
+const result2 = timStr.match(timRegex);
+console.log(result); // true
+console.log(result2); // ['Timmmmber']
+```
+
+## 29. Check for All or None
+- `?` after a lettermeans that it may or may not be there
+- popular cases of english and british spelling of words
+```js
+let favWord = "favorite favourite";
+let favRegex = /favou?rite/g;
+let result = favRegex.test(favWord);
+let result2 = favWord.match(favRegex);
+console.log(result); // true
+console.log(result2); // ['favorite', 'favourite']
+```
+
+## 30. Positive and Negative Lookahead
+- `(?=\w{5})` checks for exactly 5 characters
+- `(?=\D*\d{2})` checks for any number of characters for non digits and also makes sures there are 2 digits at the end
+- IE passes for "astronaut22" but fails for "astronaut"
+```js
+let quit = "quote";
+let noquit = "qtewaf";
+let quRegex= /q(?=u)/; // checks for u presence RIGHT after q, returns only q
+let qRegex = /q(?!u)/; // checks for u non-presence RIGHT after q, returns only q
+console.log(quit.match(quRegex)); // Returns ["q"]
+console.log(noquit.match(qRegex)); // Returns ["q"]
+
+let sampleWord = "astronaut22";
+let pwRegex = /(?=\w{5})(?=\D*\d{2})/;
+let result = pwRegex.test(sampleWord);
+console.log(result); // true
+```
+
+## 31. Reuse patterns using capture groups
+- `()` is used as a capture group
+- matched examples return the root match first, then the 1st index represented the match to the capture group
+- 2nd example: we want specifically 3 42's in a row, no more no less
+```js
+let repeatStr = "regex regex";
+let repeatRegex = /(\w+)\s\1/;
+console.log(repeatRegex.test(repeatStr)); // true
+console.log(repeatStr.match(repeatRegex)); // ["regex regex", "regex"]
+
+let repeatNum = "42 42 42";
+let reRegex = /^(\d+)\s\1\s\1$/;
+let result = reRegex.test(repeatNum);
+const result2 = repeatNum.match(reRegex);
+console.log(result); // true
+console.log(result2); // ['42 42 42', '42']
+```
+
+## 32. Use capture groups to search and replace
+- `.replace()` lets you search and replace
+- many ways to do the same thing
+- notice in example 2 we can move the capture groups
+```js
+let wrongText = "The sky is silver.";
+let silverRegex = /silver/;
+const result = wrongText.replace(silverRegex, "blue");
+console.log(result) // "The sky is blue."
+
+const result2 = "Code Camp".replace(/(\w+)\s(\w+)/, '$2 $1');
+console.log(result2) // "Camp Code"
+
+let huhText = "This sandwich is good.";
+let fixRegex = /good/;
+let replaceText = "okey-dokey";
+let result3 = huhText.replace(fixRegex, replaceText);
+console.log(result3); "This sandwich is okey-dokey."
+```
+
+## 33. Remove whitespace from start and end
+- we are removing all white spaces
+- `^\s+` captures all spaces at start, `\s+$` captures all spaces at end
+- we add `|` to check for both and add `g` to check the whole string
+```js
+let hello = "   Hello, World!  ";
+let wsRegex = /^\s+|\s+$/g;
+let result = hello.replace(wsRegex, '');
+console.log(result); // "Hello, World!"
+```
+
+## 34. Regular Expressions Outro
+- more projects found in link below
+```js
+console.log("Congratulations!!!");
+
+// JavaScript Projects: https://www.youtube.com/playlist?list=PLWKjhJtqVAbleDe3_ZA8h3AO2rXar-q2V
 ```
