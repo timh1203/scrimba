@@ -656,6 +656,7 @@ console.log(result); [' ', ' ', ' ', ' ', ' ',]
 
 ## 25. Match non-whitespace characters
 - `\S\` matches all non-whitespace characters
+- needs the `g` flag or will only return the 1st occurence
 ```js
 let sample = "Whitespace is important in separating words";
 let countWhiteSpace = /\S/g;
@@ -698,7 +699,7 @@ console.log(result2); // ['Timmmmber']
 ```
 
 ## 29. Check for All or None
-- `?` after a lettermeans that it may or may not be there
+- `?` after a letter means that it may or may not be there
 - popular cases of english and british spelling of words
 ```js
 let favWord = "favorite favourite";
