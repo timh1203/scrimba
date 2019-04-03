@@ -784,3 +784,114 @@ console.log("Congratulations!!!");
 
 // JavaScript Projects: https://www.youtube.com/playlist?list=PLWKjhJtqVAbleDe3_ZA8h3AO2rXar-q2V
 ```
+
+# Introduction to TypeScript by Dylan C. Israel
+
+## 1. TypeScript: Introduction
+- **WHAT AND WHY?**
+1) superset of javascript
+2) built by microsoft
+3) compiles down to regular javascript
+4) tends to be less error prone.
+5) Lends to code readability and maintainability
+
+- **TOPICS**
+- variable types
+- return types
+- classes
+- enums (string and number)
+- interfaces
+- intersection types
+- access modifiers
+- etc.
+
+## 2. Typescript: Variable Types
+- lets to specify types for variables
+```ts
+let example1: boolean = true;
+
+let example2: number = 35;
+
+let example3: string = 'Hello World';
+```
+
+## 3. Typescript: Multiple Types
+- goal to get to a single type but not always possible
+- `|` lets us specifies multiple types
+```ts
+let example1: boolean | number = 35;
+```
+
+## 4. Typescript: Implicit and Explicit Typing
+- explicit typing is when you know what type it is an assign the type like `number[]` or `boolean`, see `example1`
+- implicit is when you don't declare the type but the computer can grasp what type base on the value you set the example as, see `arrayExample`
+```ts
+const arrayExample = [1, 3, 4, 5];
+
+let example1: boolean | number = 35;
+
+let example2 = arrayExample.reduce((num1, num2) => num1 + num2);
+
+let example3 = 'Hello world';
+
+let example4: undefined = undefined;
+
+let example5: null = null;
+```
+
+## 5. TypeScript: Checking Types
+- using `instanceof` is the way to test the type
+- using `typeof` is not the same and can only check primitives
+- we are checking if `bear` is an instance of the class `Bear`
+```ts
+import { Bear } from './bear.model'; 
+
+const bear = new Bear(3);
+
+if (bear instanceof Bear) {
+    console.log("Hello from TypeScript");
+}
+
+```
+
+## 6. TypeScript: Type Assertions
+- in cases where you want to cast a variable as a certain type, you can do it as
+1) <string>
+2) as string
+
+```ts
+let definetlyNotAString: any = 'I am a string';
+
+let strLength = (<string> definetlyNotAString).length;
+let strLength2 = (definetlyNotAString as string).length;
+```
+
+## 7. TypeScript: Arrays
+- `any[]` is the default if you don't explicitly say
+- `example1`: `string[]` is saying that an array will consist of an array of strings
+- `example2`: you can also assign multiple types
+- `example3`: is a nested array with booleans
+```ts
+const example1: string[] = ['Hello World'];
+
+const example2: (number | boolean)[] = [1, 2, true];
+
+const example3: boolean[][] = [ [true, false] ];
+```
+
+## 8. TypeScript: Tuples
+- tuples exist in python but they are essentially an array with 2 pair items
+- the tuple just has to have a string or number, but NOT other types
+- Notice `exampleTuple2` and `exampleTuple3` will pass because it matches this scheme
+- `exampleTuple4`: once you introduce a boolean for example, it will fail
+```ts
+const exampleTuple: [string, number] = ['https://www.YouTube.com/CodingTutorials360', 30]; // passes
+const exampleTuple2: [string, number] = ['https://www.YouTube.com/CodingTutorials360', 30, 50]; // passes
+const exampleTuple3: [string, number] = ['https://www.YouTube.com/CodingTutorials360', 30, 'hello']; // passes
+const exampleTuple4: [string, number] = ['https://www.YouTube.com/CodingTutorials360', 30, false]; // fails
+```
+
+## . TypeScript: 
+-
+```ts
+```
