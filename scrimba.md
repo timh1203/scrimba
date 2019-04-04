@@ -786,6 +786,7 @@ console.log("Congratulations!!!");
 ```
 
 # Introduction to TypeScript by Dylan C. Israel
+- [Course](https://scrimba.com/g/gintrototypescript)
 
 ## 1. TypeScript: Introduction
 - **WHAT AND WHY?**
@@ -889,6 +890,151 @@ const exampleTuple: [string, number] = ['https://www.YouTube.com/CodingTutorials
 const exampleTuple2: [string, number] = ['https://www.YouTube.com/CodingTutorials360', 30, 50]; // passes
 const exampleTuple3: [string, number] = ['https://www.YouTube.com/CodingTutorials360', 30, 'hello']; // passes
 const exampleTuple4: [string, number] = ['https://www.YouTube.com/CodingTutorials360', 30, false]; // fails
+```
+
+## 9. TypeScript: Enums
+- enums are a way to organize a collection of related value
+- it seems that the function accepts the arguments in the order that it is declared in the Age enum
+```ts
+// index.ts
+import { Age } from './age.enum.ts';
+import { Names } from './name.enum.ts';
+
+function totalAge(age1: Age, age2: Age) {
+  return age1 + age2;
+}
+
+// age.enum.ts
+export enum Age {
+  dylan = 30,
+  mother = 21
+}
+
+// name.enum.ts
+export enum Names {
+  mine,
+  moms
+}
+```
+
+## 10. TypeScript: Object
+- the `Object` with the capital o is outdated, you should avoid
+- you can assign `[]`, `{}`, or `NaN` to object, weird but it works
+- can't declare Dylan because we set it as an empty object initially and doesn't have the key to be assigned a value
+```ts
+const example1: object = undefined;
+
+const example2: Object = NaN;
+
+const example3: {} = {};
+example3.firstName = 'Dylan';
+```
+
+## 11. TypeScript: Parameters
+- You can set default parameters if none declared
+```ts
+// index.ts
+import { Person } from './person.model';
+
+function add(val1: number, val2: number) {
+  return val1 + val2;
+}
+
+add(1,10);
+
+function sayHello(person: Person) {
+  return `Say hello to ${person.firstName}!`;
+}
+
+sayHello(new Person({firstName: 'Dylan'}));
+
+// person.model.ts
+export class Person {
+  firstName: string;
+  middleName: string;
+  lastName: string;
+
+  constructor(data?: any) {
+    this.firstName = data.firstName || 'Dylan';
+    this.lastName = data.lastName || 'Israel';
+    this.middleName = data.middleName;
+  }
+}
+```
+
+## 12. TypeScript: Return Types
+- `: number` after the parameters specifies the return type to number
+- can also be of type `: string`, `: never` or `: void`
+- `: never` is for when throwing an error for a function
+- you can see all 4 of the types being specified in the example
+```ts
+// index.ts
+import { Person } from './person.model';
+
+function add(val1: number, val2: number): number {
+    return val1 + val2;
+}
+
+function sayHello(person: Person): string {
+    return `Say Hello to My Little Friend, ${person.firstName}!`    
+}
+
+function voidExample(): void {
+    add(1,2);
+}
+
+function neverExample(): never {
+    throw Error;
+}
+
+// person.model.ts
+export class Person {
+  firstName: string;
+  middleName: string;
+  lastName: string;
+
+  constructor(data?: any) {
+    this.firstName = data.firstName || 'Dylan';
+    this.lastName = data.lastName || 'Israel';
+    this.middleName = data.middleName;
+  }
+}
+```
+
+## 13. TypeScript: Custom Types
+- declaring this `type` line is being phased out
+- this is also local only to that file
+- most will use interfaces or classes so it can have more global access
+```ts
+type person = {firstName: string};
+
+const example1: object = undefined;
+
+const example2: Object = NaN;
+
+const example3: person = {firstName: 'Dollan'};
+
+example3.firstName = 'Dylan';
+```
+
+## 15. TypeScript: Interfaces
+- the standard way to create a type, prefered over the method in the previous lesson
+```ts
+// index.ts
+import { Person } from './person.interface.ts';
+
+const example1: Person = {firstName: 'Dollan', middleName: 'Dollan', lastName: 'Dollan'};
+
+example1.firstName = 'Dylan';
+example1.middleName = 'Coding God';
+example1.lastName = 'Israel';
+
+// person.interface.ts
+export interface Person {
+  firstName: string;
+  middleName: string;
+  lastName: string;
+}
 ```
 
 ## . TypeScript: 
