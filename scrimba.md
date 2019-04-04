@@ -1019,6 +1019,7 @@ example3.firstName = 'Dylan';
 
 ## 15. TypeScript: Interfaces
 - the standard way to create a type, prefered over the method in the previous lesson
+- interfaces basically is a way to further specify the types
 ```ts
 // index.ts
 import { Person } from './person.interface.ts';
