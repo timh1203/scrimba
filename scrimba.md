@@ -1038,6 +1038,37 @@ export interface Person {
 }
 ```
 
+## 16. TypeScript: Models
+- Models are just like javascript classes
+- They allow us to set up methods, and properties
+- we can ignore any data we don't want in the `constructor`
+- you can also remap the names if you wanted IE `this.middle`
+- you can also set defaults IE `this.firstName = data.firstName || 'Dylan';`
+- you can pass the default right in the parameter in `example1` with `{firstName: 'Dollan'}`or declare it below with `example.firstName = 'Dylan'`
+```ts
+// index.js
+import { Person } from './person.model';
+
+const example1: Person = new Person({firstName: 'Dollan'});
+
+example1.firstName = 'Dylan';
+example1.middleName = 'Coding God';
+example1.lastName = 'Israel';
+
+// person.model.ts
+export class Person {
+  firstName: string;
+  middle: string;
+  lastName: string;
+
+  constructor(data?: any) {
+    this.firstName = data.firstName || 'Dylan';
+    this.lastName = data.lastName || 'Israel';
+    this.middle = data.middleName;
+  }
+}
+```
+
 ## . TypeScript: 
 -
 ```ts
