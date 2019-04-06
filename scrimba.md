@@ -1041,6 +1041,7 @@ export interface Person {
 ## 16. TypeScript: Models
 - Models are just like javascript classes
 - They allow us to set up methods, and properties
+- the main reason for models is because we want to enforce types and set defaults that might come the server
 - we can ignore any data we don't want in the `constructor`
 - you can also remap the names if you wanted IE `this.middle`
 - you can also set defaults IE `this.firstName = data.firstName || 'Dylan';`
@@ -1066,6 +1067,44 @@ export class Person {
     this.lastName = data.lastName || 'Israel';
     this.middle = data.middleName;
   }
+}
+```
+
+## 16. TypeScript: Intersection Types
+- Insection types is just a fancy way to say combined interfaces
+- We want to be able to set properties from multiple interfaces
+- you can do it in either an interface or mode
+- `manBearPig` inherits all 3 of the interfaces
+- In the interface files, you are declaring the types for each property for each interface
+```ts
+// index.ts
+import { Bear, Man, Pig } from './interfaces';
+
+let man: Man | Pig;
+let bear: Bear;
+let pig: Pig;
+
+// making a new type called `manBearPig`
+type ManBearPig = Bear & Man & Pig
+let manBearPig: ManBearPig;
+
+manBearPig.firstName = 'Dylan';
+manBearPig.claws = 3;
+manBearPig.bacon = false;
+
+// man.interface.ts
+export interface Man {
+  firstName: string;
+}
+
+// bear.interface.ts
+export interface Bear {
+  claws: number;
+}
+
+// pig.interface.ts
+export interface Pig {
+  bacon: boolean;
 }
 ```
 
