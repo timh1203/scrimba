@@ -1070,7 +1070,7 @@ export class Person {
 }
 ```
 
-## 16. TypeScript: Intersection Types
+## 17. TypeScript: Intersection Types
 - Insection types is just a fancy way to say combined interfaces
 - We want to be able to set properties from multiple interfaces
 - you can do it in either an interface or mode
@@ -1108,7 +1108,83 @@ export interface Pig {
 }
 ```
 
-## . TypeScript: 
+## 18. TypeScript: Generics
+- generics doesn't exist in javascript
+- we want to manipulate a type after it's passed in
+- the syntax looks slightly confusing but breakdown is:
+1) `<T>` is way to designate it's a generic
+2) `(arg: T[])` is what we are expecting as an argument
+3) `: T[]` is the type that we are expecting to return IE an array of T
+```ts
+function example<T>(arg: T[]): T[] {
+  return arg[0];
+}
+
+example([5]);
+```
+
+## 19. TypeScript: Access Modifiers
+- Access modifiers are ways to restrict what methods and properties the user has access to
+- Use 
+- `public` = do anything you want to properties of objects
+- `private` = can only use locally in code, say you want to have function to handle additional logic that you don't want to show to the user
+- `readonly` = once set, can't change it
+- `protected` = can't make an instance of that class or call methods/properties from parent from a child class IE `protected` in Animal class
+- types are public by default
+```ts
+// index.ts
+import { Bear } from './bear.model';
+import { Animal } from './animal.model';
+
+const animal = new Animal({ type: bear }); // can't make because of protected
+
+const bear = new Bear({ name: 'Omega', tail: true });
+bear.claws = 3;
+bear.name = ''; // was already set, can't change
+bear.tail = false: // can't reset either, and private only to the Bear subclass
+bear.add(1, 2);
+
+// animal.model.ts
+export class Animal {
+  protected type: string;
+
+  protected constructor(data?: any) {
+    this.type = data.type;
+  }
+}
+
+// bear.model.ts
+import { Animal } from './animal.model';
+
+export class Bear extends Animal {
+  public claws: number;
+  readonly name: string;
+  private tail: boolean;
+
+  constructor(data?: any) {
+    super(data);
+    this.claws = data.claws;
+    this.name = data.name;
+    this.tail = data.tail;
+  }
+
+  public add(num1, num2) {
+    const result = num1 + num2;
+    return result;
+  }
+
+  private addTwo(num1, num2): number {
+    return num1+ num2;
+  }
+}
+```
+
+## 20. TypeScript: Local Setup
+-
+```ts
+```
+
+## 21. TypeScript: TSLint
 -
 ```ts
 ```
