@@ -1180,11 +1180,15 @@ export class Bear extends Animal {
 ```
 
 ## 20. TypeScript: Local Setup
--
-```ts
-```
+1) have Node installed
+2) `yarn add typescript`
+3) Create typescript files IE `index.ts`
+4) Compile the file with `tsc index.ts`
+
+- `// @ts-check` will check your javascript with type errors
+- place this line at the top of your JS files
 
 ## 21. TypeScript: TSLint
--
-```ts
-```
+- TSLint is a way to write production level code
+- you can also configure TSLint file
+- follows developer's specifications
